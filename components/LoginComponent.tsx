@@ -392,12 +392,14 @@ const LoginComponent = () => {
 
         .left-panel {
           pointer-events: all;
-          padding: 3rem 17% 2rem 12%;
+          // padding: 3rem 17% 2rem 12%;
+          padding: 3rem 35% 20rem 12%;
         }
 
         .right-panel {
           pointer-events: none;
-          padding: 3rem 12% 2rem 17%;
+          // padding: 3rem 12% 2rem 17%;
+          padding: 3rem 12% 20rem 35%;
         }
 
         .panel .content {
