@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const LoginComponent = () => {
-  const [visible, setVisible] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(false);
 
   const signUpSubmit = (e: React.FormEvent<any>) => {
     e.preventDefault();
@@ -331,6 +331,7 @@ const LoginComponent = () => {
         .social-icon:hover {
           color: #4481eb;
           border-color: #4481eb;
+          transform: translateY(-5px);
         }
 
         .btn {
