@@ -193,7 +193,7 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
   };
 
   console.log("data", data);
-  const isTradComplete = data.find(el=>el.fr ===null)
+  const isTradComplete:boolean = data.find(el=>el.fr ===null)
   return (
     <>
       <SelectLanguageFlags onSelectFlag={onSelectFlag} />
