@@ -8,7 +8,7 @@ const CsvImport = (props: {
 }) => {
   const { setParsedData, setTableRows, setValues } = props;
 
-  const changeHandler = (event: ChangeEventHandler<HTMLInputElement>) => {
+  const changeHandler = (event: any) => {
     // Passing file data (event.target.files[0]) to parse using Papa.parse
     Papa.parse(event.target.files[0], {
       header: true,
