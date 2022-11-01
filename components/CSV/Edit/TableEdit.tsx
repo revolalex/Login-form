@@ -2,7 +2,8 @@ import type { InputRef } from "antd";
 import { Button, Form, Input, Popconfirm, Table } from "antd";
 import type { FormInstance } from "antd/es/form";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import SelectLanguageFlags from "./SelectLang/SelectLanguageFlags";
+import SelectLanguageFlags from "./SelectLanguageFlags/SelectLanguageFlags";
+import ExportCsv from "../Export/ExportCsv";
 
 const EditableContext = React.createContext<FormInstance<any> | null>(null);
 
@@ -67,6 +68,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
 
       toggleEdit();
       handleSave({ ...record, ...values });
+      console.log('ICI, values', values)
     } catch (errInfo) {
       console.log("Save failed:", errInfo);
     }
@@ -132,6 +134,7 @@ const TableEdit = (props: { tableRows: string[]; values: string[] }) => {
 
   const [dataSource, setDataSource] = useState<DataType[]>(dataValues);
   const [count, setCount] = useState(defaultCount && defaultCount);
+  // 
   const [lang, setLang] = useState();
 
   const handleDelete = (key: React.Key) => {
@@ -225,12 +228,14 @@ const TableEdit = (props: { tableRows: string[]; values: string[] }) => {
     };
   });
 
+  console.log(dataSource);
   return (
     <div>
       <SelectLanguageFlags onSelectFlag={onSelectFlag} />
       <Button onClick={handleAdd} type="primary" style={{ marginBottom: 16 }}>
         Add a row
       </Button>
+      <ExportCsv />
       <Table
         components={components}
         rowClassName={() => "editable-row"}

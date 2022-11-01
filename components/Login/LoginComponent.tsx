@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const LoginComponent = () => {
+  const router = useRouter();
   const [visible, setVisible] = useState<boolean>(false);
 
   const signUpSubmit = (e: React.FormEvent<any>) => {
@@ -27,6 +29,7 @@ const LoginComponent = () => {
       password: e.currentTarget.elements.password.value,
     };
     alert("username: " + data.username + " password: " + data.password);
+    router.push("/csv");
   };
 
   const iconInputStyle = {

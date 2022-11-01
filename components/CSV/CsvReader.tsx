@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TableEdit from "./Edit/TableEdit";
+import EditTable from "./Edit/EditTable";
 import CsvImport from "./Import/CsvImport";
 
 const CsvReader = () => {
@@ -14,11 +14,18 @@ const CsvReader = () => {
 
   return (
     <div>
-      <CsvImport setParsedData={setParsedData} setTableRows={setTableRows} setValues={setValues}/>
-      <br /><br />
+      <CsvImport
+        setParsedData={setParsedData}
+        setTableRows={setTableRows}
+        setValues={setValues}
+      />
+      <br />
+      <br />
       {tableRows.length > 0 && values.length > 0 && (
         <div style={{ width: "80%", margin: "auto" }}>
-          <TableEdit values={values} tableRows={tableRows} />
+          {/* <TableEdit values={values} tableRows={tableRows} />
+          <br/> */}
+          <EditTable values={values} tableRows={tableRows} />
         </div>
       )}
     </div>

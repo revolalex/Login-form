@@ -1,11 +1,13 @@
 import CsvReader from "../components/CSV/CsvReader";
+import EditTable from "../components/CSV/Edit/EditTable";
 
-const Toto = () => {
+const Csv = () => {
   return (
     <>
       <CsvReader />
+      
     </>
   );
 };
 
-export default Toto;
+export default Csv;
