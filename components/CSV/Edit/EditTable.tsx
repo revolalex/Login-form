@@ -1,17 +1,10 @@
-import {
-  Button,
-  Form,
-  Input,
-  InputNumber,
-  Popconfirm,
-  Table,
-  Typography,
-} from "antd";
+import { Form, Input, InputNumber, Popconfirm, Table, Typography } from "antd";
 import React, { useState } from "react";
 import SelectLanguageFlags from "./SelectLanguageFlags/SelectLanguageFlags";
 import ExportCsv from "../Export/ExportCsv";
+import Translate from "../Translate/Translate";
 
-interface Item {
+export interface TraductionItem {
   key: string;
   id: string;
   default: string;
@@ -23,7 +16,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   dataIndex: string;
   title: any;
   inputType: "number" | "text";
-  record: Item;
+  record: TraductionItem;
   index: number;
   children: React.ReactNode;
 }
@@ -75,16 +68,16 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
       key: value[0],
       id: value[0],
       default: value[1],
-      fr: value.length > 2 ? value[2] : null
+      fr: value.length > 2 ? value[2] : null,
     });
   });
   // State
   const [data, setData] = useState(dataValues);
   const [editingKey, setEditingKey] = useState("");
 
-  const isEditing = (record: Item) => record.key === editingKey;
+  const isEditing = (record: TraductionItem) => record.key === editingKey;
 
-  const edit = (record: Partial<Item> & { key: React.Key }) => {
+  const edit = (record: Partial<TraductionItem> & { key: React.Key }) => {
     form.setFieldsValue({ name: "", age: "", address: "", ...record });
     setEditingKey(record.key);
   };
@@ -95,7 +88,7 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
 
   const save = async (key: React.Key) => {
     try {
-      const row = (await form.validateFields()) as Item;
+      const row = (await form.validateFields()) as TraductionItem;
 
       const newData = [...data];
       const index = newData.findIndex((item) => key === item.key);
@@ -122,25 +115,35 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
       title: "id",
       dataIndex: "id",
       width: "10%",
-      editable: true,
+      // editable: true,
     },
     {
       title: "default",
       dataIndex: "default",
-      editable: true,
+      // editable: true,
     },
     {
       title: "fr",
       dataIndex: "fr",
       editable: true,
+      width: "50%",
+    },
+    {
+      title: "Translate",
+      dataIndex: "translate",
+      width: "20%",
+      render: (_: any, record: TraductionItem) => {
+        return <Translate {...record} />;
+      },
     },
     {
       title: "operation",
       dataIndex: "operation",
-      render: (_: any, record: Item) => {
+      width: "20%",
+      render: (_: any, record: TraductionItem) => {
         const editable = isEditing(record);
         return editable ? (
-          <span>
+          <span style={{ display: "flex", justifyContent: "space-evenly" }}>
             <Typography.Link
               onClick={() => save(record.key)}
               style={{ marginRight: 8 }}
@@ -152,12 +155,14 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
             </Popconfirm>
           </span>
         ) : (
-          <Typography.Link
-            disabled={editingKey !== ""}
-            onClick={() => edit(record)}
-          >
-            Edit
-          </Typography.Link>
+          <span style={{ display: "flex", justifyContent: "space-evenly" }}>
+            <Typography.Link
+              disabled={editingKey !== ""}
+              onClick={() => edit(record)}
+            >
+              Edit
+            </Typography.Link>
+          </span>
         );
       },
     },
@@ -169,7 +174,7 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
     }
     return {
       ...col,
-      onCell: (record: Item) => ({
+      onCell: (record: TraductionItem) => ({
         record,
         inputType: col.dataIndex === "age" ? "number" : "text",
         dataIndex: col.dataIndex,
@@ -184,11 +189,10 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
   };
 
   console.log("data", data);
-  const isTradComplete:boolean = data.find(el=>el.fr ===null)
+  const isTradComplete: boolean = data.find((el) => el.fr === null);
   return (
     <>
-      <SelectLanguageFlags onSelectFlag={onSelectFlag} />
-      <ExportCsv data={data} disabled={isTradComplete}/>
+      <ExportCsv data={data} disabled={isTradComplete} />
       <Form form={form} component={false}>
         <Table
           components={{
