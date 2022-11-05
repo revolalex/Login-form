@@ -1,8 +1,8 @@
 import { Form, Input, InputNumber, Popconfirm, Table, Typography } from "antd";
 import React, { useState } from "react";
-import { SupportLanguages } from "../CsvReader";
+import { SupportLanguages } from "../CsvComponents";
 import ExportCsv from "../Export/ExportCsv";
-import Translate from "../Translate/Translate";
+import Translate from "./Translate/Translate";
 
 export interface TraductionItem {
   key: string;

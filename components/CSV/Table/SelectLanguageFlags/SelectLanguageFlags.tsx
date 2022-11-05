@@ -1,7 +1,6 @@
 import { Select } from "antd";
 import { DefaultOptionType } from "antd/lib/select";
-import { LANGUAGE } from "../../../../global/language";
-import type{ SupportLanguages } from "../../CsvReader";
+import type{ SupportLanguages } from "../../CsvComponents";
 
 const { Option } = Select;
 
@@ -34,7 +33,7 @@ const SelectLanguageFlags = (props: {onSelectFlag: (value: SupportLanguages,opti
       defaultValue="french"
       style={{ width: 120 }}
     >
-      {LANGUAGE.map((lang, index) => {
+      {langages.map((lang, index) => {
         return (
           <Option key={index} value={lang.value}>
             {lang.text}

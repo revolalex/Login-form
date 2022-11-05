@@ -1,13 +1,12 @@
 import { useState } from "react";
-import EditTable from "./Edit/EditTable";
-import SelectLanguageFlags from "./Edit/SelectLanguageFlags/SelectLanguageFlags";
-import ExportCsv from "./Export/ExportCsv";
+import EditTable from "./Table/EditTable";
+import SelectLanguageFlags from "./Table/SelectLanguageFlags/SelectLanguageFlags";
 import CsvImport from "./Import/CsvImport";
 
 
 export type SupportLanguages = 'french' | 'english' | 'german'
 
-const CsvReader = () => {
+const CsvComponents = () => {
   // State to store parsed data
   const [parsedData, setParsedData] = useState([]);
   // State to store table Column name
@@ -15,7 +14,7 @@ const CsvReader = () => {
   // State to store the values
   const [values, setValues] = useState([]);
   // State to store the language
-  const [lang, setLang] = useState<SupportLanguages>();
+  const [lang, setLang] = useState<SupportLanguages>('french');
 
   const onSelectFlag = (l: SupportLanguages) => {
     setLang(l)
@@ -35,7 +34,6 @@ const CsvReader = () => {
       {tableRows.length > 0 && values.length > 0 && (
         <div style={{ width: "80%", margin: "auto" }}>
           <SelectLanguageFlags onSelectFlag={onSelectFlag} />
-          {/* <ExportCsv data={values} disabled={false} /> */}
           <EditTable values={values} tableRows={tableRows} lang={lang}/>
         </div>
       )}
@@ -43,4 +41,4 @@ const CsvReader = () => {
   );
 };
 
-export default CsvReader;
+export default CsvComponents;

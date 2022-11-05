@@ -1,7 +1,7 @@
 import { Button, Tooltip } from "antd";
 import React from "react";
 import { CSVLink } from "react-csv";
-import { SupportLanguages } from "../CsvReader";
+import { SupportLanguages } from "../CsvComponents";
 
 const ExportCsv = (props: { data: any[]; disabled: boolean, lang: SupportLanguages }) => {
   const { data, disabled, lang} = props;
@@ -15,7 +15,7 @@ const ExportCsv = (props: { data: any[]; disabled: boolean, lang: SupportLanguag
 
   return (
     <>
-      <CSVLink data={props.data} headers={headers}>
+      <CSVLink data={props.data} headers={headers} filename={`${lang}_Translate`}>
         <Tooltip title="Edit all the traduction to enabled the button">
           <Button type="primary" ghost disabled={disabled}>
             Export csv

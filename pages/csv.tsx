@@ -1,11 +1,9 @@
-import CsvReader from "../components/CSV/CsvReader";
-import EditTable from "../components/CSV/Edit/EditTable";
+import CsvComponents from "../components/CSV/CsvComponents";
 
 const Csv = () => {
   return (
     <>
-      <CsvReader />
-      
+      <CsvComponents />
     </>
   );
 };
