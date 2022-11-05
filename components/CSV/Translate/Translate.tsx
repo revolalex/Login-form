@@ -1,4 +1,4 @@
-import { Tooltip, Row, Col } from "antd";
+import { Tooltip} from "antd";
 import type { TraductionItem } from "../Edit/EditTable";
 
 const Translate = (props: TraductionItem) => {

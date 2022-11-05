@@ -4,6 +4,9 @@ import SelectLanguageFlags from "./Edit/SelectLanguageFlags/SelectLanguageFlags"
 import ExportCsv from "./Export/ExportCsv";
 import CsvImport from "./Import/CsvImport";
 
+
+export type SupportLanguages = 'french' | 'english' | 'german'
+
 const CsvReader = () => {
   // State to store parsed data
   const [parsedData, setParsedData] = useState([]);
@@ -12,11 +15,10 @@ const CsvReader = () => {
   // State to store the values
   const [values, setValues] = useState([]);
   // State to store the language
-  const [lang, setLang] = useState([]);
+  const [lang, setLang] = useState<SupportLanguages>();
 
-  const onSelectFlag = (l: string) => {
+  const onSelectFlag = (l: SupportLanguages) => {
     setLang(l)
-    console.log(l);
   };
 
 
@@ -33,7 +35,8 @@ const CsvReader = () => {
       {tableRows.length > 0 && values.length > 0 && (
         <div style={{ width: "80%", margin: "auto" }}>
           <SelectLanguageFlags onSelectFlag={onSelectFlag} />
-          <EditTable values={values} tableRows={tableRows}/>
+          {/* <ExportCsv data={values} disabled={false} /> */}
+          <EditTable values={values} tableRows={tableRows} lang={lang}/>
         </div>
       )}
     </div>

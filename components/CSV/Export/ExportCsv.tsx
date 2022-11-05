@@ -1,15 +1,16 @@
 import { Button, Tooltip } from "antd";
 import React from "react";
 import { CSVLink } from "react-csv";
+import { SupportLanguages } from "../CsvReader";
 
-const ExportCsv = (props: { data: any[]; disabled: boolean }) => {
-  const { data, disabled } = props;
+const ExportCsv = (props: { data: any[]; disabled: boolean, lang: SupportLanguages }) => {
+  const { data, disabled, lang} = props;
   console.log("exportCsv data", data);
 
   const headers = [
     { label: "id", key: "id" },
     { label: "default", key: "default" },
-    { label: "fr", key: "fr" },
+    { label: lang, key: "fr" },
   ];
 
   return (

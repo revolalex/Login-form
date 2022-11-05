@@ -1,6 +1,6 @@
 import { Form, Input, InputNumber, Popconfirm, Table, Typography } from "antd";
 import React, { useState } from "react";
-import SelectLanguageFlags from "./SelectLanguageFlags/SelectLanguageFlags";
+import { SupportLanguages } from "../CsvReader";
 import ExportCsv from "../Export/ExportCsv";
 import Translate from "../Translate/Translate";
 
@@ -55,11 +55,11 @@ const EditableCell: React.FC<EditableCellProps> = ({
   );
 };
 
-const EditTable = (props: { tableRows: string[]; values: string[] }) => {
+const EditTable = (props: { tableRows: string[]; values: string[], lang: SupportLanguages }) => {
   // form
   const [form] = Form.useForm();
   // props
-  const { values, tableRows } = props;
+  const { values, tableRows, lang } = props;
   console.log("tableRows", tableRows);
   // build data
   const dataValues: any[] = [];
@@ -123,7 +123,7 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
       // editable: true,
     },
     {
-      title: "fr",
+      title: lang,
       dataIndex: "fr",
       editable: true,
       width: "50%",
@@ -184,15 +184,12 @@ const EditTable = (props: { tableRows: string[]; values: string[] }) => {
     };
   });
 
-  const onSelectFlag = (l: string) => {
-    console.log(l);
-  };
 
   console.log("data", data);
   const isTradComplete: boolean = data.find((el) => el.fr === null);
   return (
     <>
-      <ExportCsv data={data} disabled={isTradComplete} />
+      <ExportCsv data={data} disabled={isTradComplete} lang={lang} />
       <Form form={form} component={false}>
         <Table
           components={{

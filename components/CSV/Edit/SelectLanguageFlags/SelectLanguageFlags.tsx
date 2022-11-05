@@ -1,11 +1,12 @@
 import { Select } from "antd";
 import { DefaultOptionType } from "antd/lib/select";
 import { LANGUAGE } from "../../../../global/language";
+import type{ SupportLanguages } from "../../CsvReader";
 
 const { Option } = Select;
 
 
-const SelectLanguageFlags = (props: {onSelectFlag: (value: string,option: DefaultOptionType | DefaultOptionType[]) => void;}) => {
+const SelectLanguageFlags = (props: {onSelectFlag: (value: SupportLanguages,option: DefaultOptionType | DefaultOptionType[]) => void;}) => {
   const { onSelectFlag } = props;
 
   const onSearch = (value: string) => {
