@@ -24,20 +24,27 @@ const CsvComponents = () => {
   return (
     <div>
       <Waves>
-      <div style={{ width: "80%", margin: "auto" }}>
-        <CsvImport
-          setParsedData={setParsedData}
-          setTableRows={setTableRows}
-          setValues={setValues}
-        />
-        selecte a language: &nbsp;
-        <SelectLanguageFlags onSelectFlag={onSelectFlag} />
-        {tableRows.length > 0 && values.length > 0 ? (
-          <EditTable values={values} tableRows={tableRows} lang={lang} />
-        ) : (
-          <Empty style={{ margin: 60 }} />
-        )}
-      </div>
+        <div style={{ width: "100%", margin: "10px"}}>
+          <CsvImport
+            setParsedData={setParsedData}
+            setTableRows={setTableRows}
+            setValues={setValues}
+          />
+
+          <br />
+          <br />
+          {values.length > 0 && (
+            <span>
+              selecte a language: &nbsp;
+              <SelectLanguageFlags onSelectFlag={onSelectFlag} />
+            </span>
+          )}
+          {tableRows.length > 0 && values.length > 0 ? (
+            <EditTable values={values} tableRows={tableRows} lang={lang} />
+          ) : (
+            <Empty style={{ margin: 60 }} />
+          )}
+        </div>
       </Waves>
     </div>
   );
