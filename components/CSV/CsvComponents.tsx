@@ -2,9 +2,9 @@ import { useState } from "react";
 import EditTable from "./Table/EditTable";
 import SelectLanguageFlags from "./Table/SelectLanguageFlags/SelectLanguageFlags";
 import CsvImport from "./Import/CsvImport";
+import { Empty } from "antd";
 
-
-export type SupportLanguages = 'french' | 'english' | 'german'
+export type SupportLanguages = "french" | "english" | "german";
 
 const CsvComponents = () => {
   // State to store parsed data
@@ -14,29 +14,30 @@ const CsvComponents = () => {
   // State to store the values
   const [values, setValues] = useState([]);
   // State to store the language
-  const [lang, setLang] = useState<SupportLanguages>('french');
+  const [lang, setLang] = useState<SupportLanguages>("french");
 
   const onSelectFlag = (l: SupportLanguages) => {
-    setLang(l)
+    setLang(l);
   };
-
 
   return (
     <div>
-      <CsvImport
-        setParsedData={setParsedData}
-        setTableRows={setTableRows}
-        setValues={setValues}
-      />
       <br />
       <br />
-
-      {tableRows.length > 0 && values.length > 0 && (
-        <div style={{ width: "80%", margin: "auto" }}>
-          <SelectLanguageFlags onSelectFlag={onSelectFlag} />
-          <EditTable values={values} tableRows={tableRows} lang={lang}/>
-        </div>
-      )}
+      <div style={{ width: "80%", margin: "auto" }}>
+        <CsvImport
+          setParsedData={setParsedData}
+          setTableRows={setTableRows}
+          setValues={setValues}
+        />
+        selecte a language: &nbsp;
+        <SelectLanguageFlags onSelectFlag={onSelectFlag} />
+        {tableRows.length > 0 && values.length > 0 ? (
+          <EditTable values={values} tableRows={tableRows} lang={lang} />
+        ) : (
+          <Empty style={{ margin: 60 }} />
+        )}
+      </div>
     </div>
   );
 };

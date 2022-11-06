@@ -1,5 +1,5 @@
-import { Form, Input, InputNumber, Popconfirm, Table, Typography } from "antd";
-import React, { useState } from "react";
+import { Form, Input, InputNumber, message, Popconfirm, Table, Typography } from "antd";
+import React, { useEffect, useState } from "react";
 import { SupportLanguages } from "../CsvComponents";
 import ExportCsv from "../Export/ExportCsv";
 import Translate from "./Translate/Translate";
@@ -60,7 +60,7 @@ const EditTable = (props: { tableRows: string[]; values: string[], lang: Support
   const [form] = Form.useForm();
   // props
   const { values, tableRows, lang } = props;
-  console.log("tableRows", tableRows);
+
   // build data
   const dataValues: any[] = [];
   values.map((value) => {
@@ -185,8 +185,8 @@ const EditTable = (props: { tableRows: string[]; values: string[], lang: Support
   });
 
 
-  console.log("data", data);
   const isTradComplete: boolean = data.find((el) => el.fr === null);
+
   return (
     <>
       <ExportCsv data={data} disabled={isTradComplete} lang={lang} />
