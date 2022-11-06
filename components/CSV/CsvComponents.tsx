@@ -3,6 +3,7 @@ import EditTable from "./Table/EditTable";
 import SelectLanguageFlags from "./Table/SelectLanguageFlags/SelectLanguageFlags";
 import CsvImport from "./Import/CsvImport";
 import { Empty } from "antd";
+import Waves from "../Waves/Waves";
 
 export type SupportLanguages = "french" | "english" | "german";
 
@@ -22,8 +23,7 @@ const CsvComponents = () => {
 
   return (
     <div>
-      <br />
-      <br />
+      <Waves>
       <div style={{ width: "80%", margin: "auto" }}>
         <CsvImport
           setParsedData={setParsedData}
@@ -38,6 +38,7 @@ const CsvComponents = () => {
           <Empty style={{ margin: 60 }} />
         )}
       </div>
+      </Waves>
     </div>
   );
 };
