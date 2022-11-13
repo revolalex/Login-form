@@ -1,4 +1,4 @@
-# Login Form , Next @ CSV uploader and editor
+# Login Form , Next & CSV uploader and editor
 
 ## Screenshot
 
