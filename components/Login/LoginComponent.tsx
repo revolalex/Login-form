@@ -168,7 +168,7 @@ const LoginComponent = () => {
         <div className="panels-container">
           <div className="panel left-panel">
             <div className="content">
-              <h3>New here ?</h3>
+              <h3 className="color-white">New here ?</h3>
               <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Debitis, ex ratione. Aliquid!
@@ -185,7 +185,7 @@ const LoginComponent = () => {
 
           <div className="panel right-panel">
             <div className="content">
-              <h3>One of us ?</h3>
+              <h3 color-white>One of us ?</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
                 laboriosam ad deleniti.
@@ -484,7 +484,8 @@ const LoginComponent = () => {
           }
           .signin-signup {
             width: 100%;
-            top: 95%;
+            // top: 95%;
+            top: 85%;
             transform: translate(-50%, -100%);
             transition: 1s 0.8s ease-in-out;
           }

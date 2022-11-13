@@ -24,13 +24,13 @@ const CsvComponents = () => {
   return (
     <div>
       <Waves>
-        <div style={{ width: "100%", margin: "10px"}}>
+        <div style={{ width: "100%", margin: "10vw" }}>
           <CsvImport
             setParsedData={setParsedData}
             setTableRows={setTableRows}
             setValues={setValues}
           />
-
+          <br />
           <br />
           <br />
           {values.length > 0 && (
@@ -42,7 +42,12 @@ const CsvComponents = () => {
           {tableRows.length > 0 && values.length > 0 ? (
             <EditTable values={values} tableRows={tableRows} lang={lang} />
           ) : (
-            <Empty style={{ margin: 60 }} />
+            <>
+              <Empty
+                style={{ margin: 60 }}
+                description={<span>Please upload a .csv file</span>}
+              />
+            </>
           )}
         </div>
       </Waves>

@@ -17,7 +17,7 @@ const ExportCsv = (props: { data: any[]; disabled: boolean, lang: SupportLanguag
     <>
       <CSVLink data={data} headers={headers} filename={`${lang}_Translate`}>
         <Tooltip title="Edit all the traduction to enabled the button">
-          <Button type="primary" ghost disabled={disabled}>
+          <Button type="primary" disabled={disabled}>
             Export csv
           </Button>
         </Tooltip>

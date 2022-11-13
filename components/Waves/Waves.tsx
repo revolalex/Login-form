@@ -61,7 +61,9 @@ const Waves = (props: {
         </div>
       </div>
       <div className="content flex">
-        <a style={{color: "lightgray"}} href="https://github.com/revolalex/">By RevolALex </a>
+        <a style={{ color: "lightgray" }} href="https://github.com/revolalex/">
+          By RevolALex
+        </a>
       </div>
       <style jsx>{`
         .header {

@@ -1,5 +1,12 @@
-import { Form, Input, InputNumber, message, Popconfirm, Table, Typography } from "antd";
-import React, { useEffect, useState } from "react";
+import {
+  Form,
+  Input,
+  InputNumber,
+  Popconfirm,
+  Table,
+  Typography,
+} from "antd";
+import React, { useState } from "react";
 import { SupportLanguages } from "../CsvComponents";
 import ExportCsv from "../Export/ExportCsv";
 import Translate from "./Translate/Translate";
@@ -55,7 +62,11 @@ const EditableCell: React.FC<EditableCellProps> = ({
   );
 };
 
-const EditTable = (props: { tableRows: string[]; values: string[], lang: SupportLanguages }) => {
+const EditTable = (props: {
+  tableRows: string[];
+  values: string[];
+  lang: SupportLanguages;
+}) => {
   // form
   const [form] = Form.useForm();
   // props
@@ -184,12 +195,14 @@ const EditTable = (props: { tableRows: string[]; values: string[], lang: Support
     };
   });
 
-
-  const isTradComplete: boolean = data.find((el) => el.fr === null);
+  const isTradComplete = data.find((el) => el.fr === null);
+  
+  // use a ! disabled because is trus if isTradComplete === null || undefined
+  const disabled = typeof isTradComplete === 'undefined' || isTradComplete === null
 
   return (
     <>
-      <ExportCsv data={data} disabled={isTradComplete} lang={lang} />
+      <ExportCsv data={data} disabled={!disabled} lang={lang} />
       <Form form={form} component={false}>
         <Table
           components={{
